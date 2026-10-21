@@ -1,5 +1,5 @@
 import java.util.LinkedList;
-
+import java.util.*;
 public class PCB {
     private static int nextPid;
     protected int pid;
