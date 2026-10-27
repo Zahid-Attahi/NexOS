@@ -16,6 +16,11 @@ public class Init extends UserProcess {
         GoodByeWorld goodByeWorld= new GoodByeWorld();
         sendMessage(new Message(0, KernelMessageTypes.createProcess.ordinal(), goodByeWorld));
 
+        Disk disk = new Disk();
+             sendMessage(new Message(0, KernelMessageTypes.createProcess.ordinal(), disk));
+        DiskTest diskTest = new DiskTest();
+                sendMessage(new Message(0, KernelMessageTypes.createProcess.ordinal(), diskTest));
+
         sendMessage(new Message(0, KernelMessageTypes.exit.ordinal()));
     }
 }
