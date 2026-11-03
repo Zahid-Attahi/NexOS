@@ -85,6 +85,11 @@ Replace `<MainClass>` with your project's entry point. On startup, `Init` launch
 
 All tests pass on the final run.
 
+# Known limitations
+- **File system is in memory only. Contents are lost when the kernel exits.
+- **Disk and file system are not connected: files don't persist to the RandomAccessFile.
+- **Scheduling is cooperative, so a process that never calls cooperate() can starve others.
+
 
 
 
