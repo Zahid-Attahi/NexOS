@@ -80,6 +80,33 @@ protected void waitForSchedule() {
         Thread.currentThread().interrupt();
     }
 }
+
+protected int load(int vaddress) {
+    try {
+        return Hardware.getInstance().load(vaddress);
+    } catch (MemoryAccessViolation e) {
+        die(e);
+        return 0;
+    }
+}
+
+protected void store(int vaddress, int value) {
+    try {
+        Hardware.getInstance().store(vaddress, value);
+    } catch (MemoryAccessViolation e) {
+        die(e);
+    }
+}
+
+private void die(MemoryAccessViolation e) {
+    System.out.println(getName() + ": segfault - " + e.getMessage() + ", killing process");
+    sendMessage(new Message(0, KernelMessageTypes.exit.ordinal()));
+    try {
+        semaphore.acquire();
+    } catch (InterruptedException ie) {
+        Thread.currentThread().interrupt();
+    }
+}
 protected Message getForKernel() {
     return forKernel;
 }
