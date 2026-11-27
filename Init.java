@@ -26,6 +26,10 @@ sendMessage(new Message(0, KernelMessageTypes.createProcess.ordinal(), fileSyste
 FSTest fsTest = new FSTest();
 sendMessage(new Message(0, KernelMessageTypes.createProcess.ordinal(), fsTest));
 
+for (int i = 1; i <= 3; i++) {
+    sendMessage(new Message(0, KernelMessageTypes.createProcess.ordinal(), new MemTest(i, 3)));
+}
+sendMessage(new Message(0, KernelMessageTypes.createProcess.ordinal(), new SegFaultTest()));
         sendMessage(new Message(0, KernelMessageTypes.exit.ordinal()));
     }
 }
